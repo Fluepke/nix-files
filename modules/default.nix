@@ -1,0 +1,9 @@
+{ ... }:
+
+{
+  imports = [
+    ./deploy
+    ./secrets
+    ./monitoring
+  ];
+}
