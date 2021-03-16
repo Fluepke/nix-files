@@ -1,7 +1,7 @@
 { stdenv, lib, buildGoPackage, fetchFromGitHub, nixosTests }:
 
 buildGoPackage rec {
-  pname = "prometheus-vodafone-station-exporter";
+  pname = "vodafone-station-exporter";
   version = "master";
 
   src = fetchFromGitHub {

@@ -4,8 +4,9 @@ with lib;
 
 {
   imports = [
-    ./prometheus-vodafone-station-exporter
     ./prometheus-iptables-exporter
+    ./prometheus-smokeping-exporter
+    ./prometheus-vodafone-station-exporter
     ./prometheus-zyxel-exporter
   ];
 

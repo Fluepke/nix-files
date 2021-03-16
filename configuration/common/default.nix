@@ -3,6 +3,7 @@
 {
   imports = [
     ../../modules
+    ./acme.nix
     ./users.nix
     ./shell.nix
     ./ssh.nix

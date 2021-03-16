@@ -17,7 +17,7 @@
   fluepke.deploy.ssh.port = 22;
 
   fluepke.secrets.zyxel-switch = {
-    owner = "prometheus-zyxel-exporter";
+    owner = config.fluepke.monitoring.prometheus-zyxel-exporter.user;
   };
   fluepke.monitoring.prometheus-zyxel-exporter = {
     enable = true;
@@ -25,7 +25,7 @@
   };
 
   fluepke.secrets.vodafone-station-password = {
-    owner = "prometheus-vodafone-station-exporter";
+    owner = config.fluepke.monitoring.prometheus-vodafone-station-exporter.user;
   };
   fluepke.monitoring.prometheus-vodafone-station-exporter = {
     enable = true;
