@@ -32,29 +32,34 @@ in {
   };
 
   config = mkIf cfg.enable {
-      environment.systemPackages = [ pkgs.prometheus-smokeping-exporter ];
-      systemd.services.prometheus-smokeping-exporter =
-        let
-          hosts = concatStringsSep " " cfg.hosts;
-        in {
-          description = "Prometheus style smokeping prober";
-          documentation = [ "https://github.com/SuperQ/smokeping_prober" ];
-          wantedBy = [ "multi-user.target" ];
-          after = [ "network.target" ];
-          serviceConfig = {
-            Restart = mkDefault "always";
-            DynamicUser = "yes";
-            ProtectSystem = "full";
-            AmbientCapabilities = "CAP_NET_RAW";  # required for ICMP
-          };
-          script = ''
-            ${pkgs.prometheus-smokeping-exporter}/bin/smokeping_prober \
-              --web.listen-address="${cfg.listenAddress}" \
-              --web.telemetry-path="${cfg.telemetryPath}" \
-              --ping.interval=${cfg.pingInterval} \
-              --privileged \
-              ${hosts}
-          '';
-         };
+    fluepke.monitoring.exporters.smokeping-exporter = {};
+
+    systemd.services.prometheus-smokeping-exporter =
+      let
+        hosts = concatStringsSep " " cfg.hosts;
+      in {
+        description = "Prometheus style smokeping prober";
+        documentation = [ "https://github.com/SuperQ/smokeping_prober" ];
+        wantedBy = [ "multi-user.target" ];
+        after = [ "network.target" ];
+        serviceConfig = {
+          Restart = mkDefault "always";
+          DynamicUser = "yes";
+          ProtectSystem = "full";
+          AmbientCapabilities = "CAP_NET_RAW";  # required for ICMP
+        };
+        script = ''
+          ${pkgs.prometheus-smokeping-exporter}/bin/smokeping_prober \
+            --web.listen-address="${cfg.listenAddress}" \
+            --web.telemetry-path="${cfg.telemetryPath}" \
+            --ping.interval=${cfg.pingInterval} \
+            --privileged \
+            ${hosts}
+        '';
+      };
+
+    services.nginx.virtualHosts.${config.fluepke.deploy.fqdn} = {
+      locations."/smokeping-exporter/metrics".proxyPass = "http://${cfg.listenAddress}/metrics";
+    };
   };
 }

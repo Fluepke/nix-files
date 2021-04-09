@@ -4,13 +4,9 @@
   services.prometheus.exporters.node = {
     enable = true;
     listenAddress = "[::1]";
-    enabledCollectors = [
-      "ntp"
-      "systemd"
-    ];
   };
 
-  fluepke.monitoring.exporters = [ "node-exporter" ];
+  fluepke.monitoring.exporters.node-exporter = {};
 
   services.nginx.virtualHosts.${config.fluepke.deploy.fqdn} = let
     addr = config.services.prometheus.exporters.node.listenAddress;

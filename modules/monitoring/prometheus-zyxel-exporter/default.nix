@@ -30,7 +30,7 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    fluepke.monitoring.exporters = [ "zyxel-exporter" ];
+    fluepke.monitoring.exporters.zyxel-exporter = {};
 
     users.users.prometheus-zyxel-exporter = mkIf (cfg.user == "prometheus-zyxel-exporter") {
       group = "prometheus-zyxel-exporter";

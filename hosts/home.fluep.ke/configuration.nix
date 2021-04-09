@@ -11,6 +11,8 @@
       ./networking
       ../../configuration/common
       ../../configuration/crypto
+      ../../configuration/monitoring-collector
+      ../../configuration/monitoring-grafana
     ];
 
   fluepke.deploy.ssh.host = "45.158.40.1";

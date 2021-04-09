@@ -15,6 +15,8 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    fluepke.monitoring.exporters.iptables-exporter = {};
+
     systemd.services.prometheus-iptables-exporter = {
       description = "iptables prometheus exporter";
       documentation = [ "https://github.com/retailnext/iptables_exporter" ];
@@ -32,6 +34,10 @@ in {
         ${pkgs.prometheus-iptables-exporter}/bin/iptables_exporter \
           --web.listen-address="${cfg.listenAddress}"
       '';
+    };
+
+    services.nginx.virtualHosts.${config.fluepke.deploy.fqdn} = {
+      locations."/iptables-exporter/metrics".proxyPass = "http://${cfg.listenAddress}/metrics";
     };
   };
 }

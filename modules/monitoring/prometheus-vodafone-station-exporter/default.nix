@@ -30,7 +30,10 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    fluepke.monitoring.exporters = [ "vodafone-station-exporter" ];
+    fluepke.monitoring.exporters.vodafone-station-exporter = {
+      interval = "30s";
+      timeout = "30s";
+    };
 
     users.users.vodafone-station-exporter = mkIf (cfg.user == "vodafone-station-exporter") {
       group = "vodafone-station-exporter";

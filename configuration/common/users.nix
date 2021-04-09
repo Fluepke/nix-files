@@ -1,9 +1,10 @@
-{ ... }:
+{ pkgs, ... }:
 
 let
   mkNormalUser = keys: {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
+    shell = pkgs.zsh;
     openssh.authorizedKeys.keys = keys;
   };
 in

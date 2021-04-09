@@ -7,8 +7,8 @@ buildGoPackage rec {
   src = fetchFromGitHub {
     owner = "fluepke";
     repo = "vodafone-station-exporter";
-    sha256 = "0dz85c16fc83892ssrfbbmw9snc9kp82b7dk7fs0lj7y7bzn2k6l";
-    rev = "547172a8e30f25a0b34edd126ff1ba16dd1024d5";
+    sha256 = "0kg2i1pxvmlpzhkdh35rnc5al2zq6156ljb6v96giqnm0k6sv6iq";
+    rev = "ee0ce195ec1278034f5f51175c9382db83c6712f";
   };
 
   goPackagePath = "github.com/fluepke/vodafone-station-exporter";
