@@ -3,7 +3,7 @@
 let
   mkNormalUser = keys: {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "audio" ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = keys;
   };

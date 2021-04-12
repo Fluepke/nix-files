@@ -3,7 +3,7 @@
 {
   services.dhcpd4 = {
     enable = true;
-    interfaces = [ "internet" "guests" ];
+    interfaces = [ "internet" "guests" "enp2s0" ];
     extraConfig = ''
       option domain-name-servers 1.1.1.1, 9.9.9.9;
       option interface-mtu 1400;
@@ -12,6 +12,13 @@
       # Force sending of option interface-mtu (21 [hex 0x1A])
       if exists dhcp-parameter-request-list {
         option dhcp-parameter-request-list = concat(option dhcp-parameter-request-list,1a);
+      }
+
+      # default VLAN
+      subnet 10.0.0.0 netmask 255.255.255.0 {
+        range 10.0.0.100 10.0.0.200;
+        option routers 10.0.0.1;
+        option domain-name "intern.wifi.fluep.ke";
       }
 
       # internet VLAN
@@ -66,6 +73,16 @@
           hardware ethernet e0:2b:96:af:3d:30;
           fixed-address 45.158.40.9;
           option host-name "homepod";
+        }
+        host air-humidifier {
+          hardware ethernet e4:23:54:17:9c:79;
+          fixed-address 45.158.40.25;
+          option host-name "air-humidifier";
+        }
+        host air-cleaner {
+          hardware ethernet e4:23:54:10:d7:ab;
+          fixed-address 45.158.40.23;
+          option host-name "air-cleaner";
         }
       }
 

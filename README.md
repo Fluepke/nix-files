@@ -15,11 +15,11 @@
 Switch
 | VLAN | Port 1 | Port 2 | Port 3 | Port 4 | Port 5 |
 |:----:|:------:|:------:|:------:|:------:|:------:|
-| PVID |    1   |    1   |    1   |    1   |   420  |
-|   1  |  Untag |  Untag |  Untag |  Untag |    -   |
-|  23  |   Tag  |   Tag  |   Tag  |   Tag  |    -   |
-|  42  |   Tag  |   Tag  |   Tag  |   Tag  |    -   |
-|  420 |   Tag  |   Tag  |   Tag  |   Tag  |  Untag |
+| PVID |   42   |   42   |    1   |    1   |   420  |
+|   1  |    -   |    -   |  Untag |  Untag |    -   |
+|  23  |    -   |    -   |   Tag  |   Tag  |    -   |
+|  42  |  Untag |  Untag |   Tag  |   Tag  |    -   |
+|  420 |    -   |    -   |   Tag  |   Tag  |  Untag |
 
 ## NixOs installation instructions
 > For UEFI, with a swap partition

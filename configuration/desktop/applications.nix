@@ -2,6 +2,9 @@
 
 {
   users.users.fluepke.packages = with pkgs; [
+    chromium
+    arandr
+    glxinfo
     cargo rustc rustfmt
     gnumake gcc binutils cmake
     pass
@@ -75,6 +78,7 @@
 
     kicad-with-packages3d
 
+    spotify
     #doom-emacs
     #(lib.hiPrio (pkgs.writeScriptBin "emacs" ''
     #  #!${pkgs.runtimeShell}
@@ -204,18 +208,6 @@
   };
 
   systemd.user.services.emacs.wantedBy = [ "graphical-session.target" ];
-
-  systemd.user.services.qutebrowser = {
-    wantedBy = [ "graphical-session.target" ];
-    after = [ "graphical-session-pre.target" ];
-    partOf = [ "graphical-session.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.qutebrowser}/bin/qutebrowser --nowindow";
-      Restart = "always";
-      RestartSec = 3;
-    };
-    environment.PATH = lib.mkForce "/run/wrappers/bin:/home/fluepke/.nix-profile/bin:/etc/profiles/per-user/fluepke/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
-  };
 
   fonts.fontconfig.localConf = lib.fileContents ./fontconfig.xml;
   fonts.fontconfig.defaultFonts = {

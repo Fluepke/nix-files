@@ -37,7 +37,10 @@
   };
 
   networking.interfaces.wan = {
-    # TODO switch to vodafone business plan for static IP
+    ipv4.addresses = [{
+      address = "192.168.0.2";
+      prefixLength = 24;
+    }]; # required to reach the modem for snmp and web ui
     useDHCP = true;
   };
 }

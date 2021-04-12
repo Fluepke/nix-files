@@ -8,9 +8,7 @@
 
   networking.nat = {
     enable = true;
-    internalIPs = [
-      "10.0.0.0/24"
-    ];
+    internalInterfaces = [ "enp2s0" ];
     externalInterface = "wan";
   };
 }

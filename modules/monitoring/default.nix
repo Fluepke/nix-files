@@ -21,6 +21,7 @@ in {
     ./prometheus-smokeping-exporter
     ./prometheus-vodafone-station-exporter
     ./prometheus-zyxel-exporter
+    ./prometheus-tc4400-exporter
   ];
 
   options = {

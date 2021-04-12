@@ -28,9 +28,9 @@ in
   environment.systemPackages = with pkgs; [
     wget vim htop nload fd ripgrep exa bat dnsutils
     tmux curl jq git socat usbutils pciutils termite.terminfo
-    iperf3 nmap bmon
+    iperf3 nmap bmon net-snmp
     tcpdump telnet swaks netcat
-    git hexyl yq zsh
+    git hexyl yq zsh psmisc vgo2nix go
   ];
 
   time.timeZone = "Etc/UTC";

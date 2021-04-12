@@ -13,10 +13,12 @@
       ../../configuration/crypto
       ../../configuration/monitoring-collector
       ../../configuration/monitoring-grafana
+      ../../configuration/unifi
     ];
 
   fluepke.deploy.ssh.host = "45.158.40.1";
   fluepke.deploy.ssh.port = 22;
+  fluepke.deploy.groups = [ "home" ];
 
   fluepke.secrets.zyxel-switch = {
     owner = config.fluepke.monitoring.prometheus-zyxel-exporter.user;
@@ -30,9 +32,11 @@
     owner = config.fluepke.monitoring.prometheus-vodafone-station-exporter.user;
   };
   fluepke.monitoring.prometheus-vodafone-station-exporter = {
-    enable = true;
+    enable = false;
     vodafoneStationPasswordFile = config.fluepke.secrets.vodafone-station-password.path;
   };
+
+  fluepke.monitoring.prometheus-tc4400-exporter.enable = true;
 
   networking.hostName = "home";
   networking.domain = "fluep.ke";

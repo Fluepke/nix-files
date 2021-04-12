@@ -1,7 +1,15 @@
 { config, lib, pkgs, ... }:
 
 {
-  hardware.opengl.enable = true;
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      vaapiIntel
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+  };
 
   users.users.fluepke.packages = with pkgs; [
     qt5.qtwayland
