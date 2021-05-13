@@ -8,7 +8,7 @@ in
     ../../modules
     (sources.home-manager + "/nixos")
     ./acme.nix
-    ./fail2ban.nix
+    # ./fail2ban.nix
     ./iperf3.nix
     ./users.nix
     ./shell.nix
@@ -26,9 +26,9 @@ in
 
   nixpkgs.config.packageOverrides = import ../../pkgs { inherit pkgs lib; };
   environment.systemPackages = with pkgs; [
-    wget vim htop nload fd ripgrep exa bat dnsutils
-    tmux curl jq git socat usbutils pciutils termite.terminfo
-    iperf3 nmap bmon net-snmp
+    wget pv htop nload fd ripgrep exa bat dnsutils
+    tmux curl jq git socat usbutils pciutils
+    iperf3 nmap bmon net-snmp vim
     tcpdump telnet swaks netcat
     git hexyl yq zsh psmisc vgo2nix go
   ];

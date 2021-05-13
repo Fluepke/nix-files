@@ -1,9 +1,19 @@
-{ ... }:
+{ pkgs, ... }:
 
+let
+  pulse = (pkgs.pulseaudio.overrideAttrs ( oldAttrs: { airtunesSupport = true; }) );
+in
 {
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.package = pkgs.pulseaudioFull;
+  environment.systemPackages = [ pulse ];
   nixpkgs.config.pulseaudio = true;
+  hardware.pulseaudio.extraModules = [ pkgs.pulseaudio-modules-bt ];
+  hardware.pulseaudio.extraConfig = ''
+    load-module module-raop-discover
+    load-module module-raop-sink
+  '';
   # hardware.pulseaudio.extraConfig = ''
   #   load-module module-tunnel-sink-new server=hifipi.petabyte.dev
   #   load-module module-tunnel-sink-new server=tvpi.petabyte.dev

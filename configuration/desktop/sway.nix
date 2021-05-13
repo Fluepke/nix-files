@@ -29,6 +29,7 @@
 
   environment.variables.TERMINAL = "alacritty";
   environment.variables.QT_QPA_PLATFORM = "wayland";
+  environment.variables.QT_STYLE_OVERRIDE="adwaita-dark";
   environment.variables.QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
   environment.variables._JAVA_AWT_WM_NONREPARENTING = "1";
   environment.variables.QT_AUTO_SCREEN_SCALE_FACTOR = "1";
@@ -52,7 +53,7 @@
       settings = {
         font.normal = {
           family = "Bitstream Vera Sans Mono";
-          size = 9.0;
+          size = 32.0;
         };
 
         colors = {
@@ -118,7 +119,7 @@
 
 
       extraConfig = ''
-        default_border pixel 1
+        default_border pixel 6
       '';
 
       config = {

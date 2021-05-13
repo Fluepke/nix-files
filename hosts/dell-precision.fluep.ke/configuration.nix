@@ -17,7 +17,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  fluepke.deploy.ssh.host = "45.158.40.26";
+  fluepke.deploy.ssh.host = "127.0.0.1";
   fluepke.deploy.ssh.port = 22;
   fluepke.deploy.groups = [ "laptops" ];
 

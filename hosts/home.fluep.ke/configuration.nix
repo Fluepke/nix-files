@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./networking
+      ./monitoring
       ../../configuration/common
       ../../configuration/crypto
       ../../configuration/monitoring-collector
@@ -37,6 +38,8 @@
   };
 
   fluepke.monitoring.prometheus-tc4400-exporter.enable = true;
+
+  hardware.fancontrol.enable = true;
 
   networking.hostName = "home";
   networking.domain = "fluep.ke";

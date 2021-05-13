@@ -2,8 +2,12 @@
 
 {
   users.users.fluepke.packages = with pkgs; [
+    wfuzz
+    texlive.combined.scheme-full
     chromium
+    adwaita-qt
     arandr
+    transmission-gtk
     glxinfo
     cargo rustc rustfmt
     gnumake gcc binutils cmake
@@ -17,6 +21,7 @@
     ncat
     pwgen
     mpc_cli
+    gnome3.gnome-maps
     powertop
     qemu
     deluge
@@ -28,6 +33,7 @@
     sshfs
     quasselClient
     pavucontrol
+    lxappearance
     tdesktop
     evince
     youtubeDL
@@ -237,4 +243,8 @@
   programs.adb.enable = true;
   #programs.geary.enable = true;
   services.pcscd.enable = true;
+
+  services.avahi = {
+    enable = true;
+  };
 }
