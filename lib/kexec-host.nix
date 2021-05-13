@@ -3,13 +3,47 @@
 {
   imports = [
     (modulesPath + "/installer/netboot/netboot-minimal.nix")
-    ../configuration/common
+    #../configuration/common
   ];
 
   boot.loader.grub.enable = false;
   systemd.services.sshd.wantedBy = lib.mkForce [ "multi-user.target" ];
   networking.hostName = "kexec";
   networking.domain = "fluep.ke";
+
+  users.users.fluepke = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+    initialPassword = "Mcr6kMGJxPLAzjPVlxUs";
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIFPW/LUTmJn5Ip8x5HjrjENjCh+u9aA60uGzLpNsBag cardno:000611180084"
+    ];
+  };
+  nix.trustedUsers = [ "@wheel" ];
+  security.sudo.wheelNeedsPassword = false;
+
+  networking.useDHCP = false;
+  boot.kernel.sysctl."net.ipv6.conf.ens2.accept_ra" = false;
+  networking.interfaces.ens2.ipv4.addresses = [{
+    address = "217.197.83.150"; prefixLength = 26;
+  }];
+  networking.interfaces.ens2.ipv6.addresses = [{
+    address = "2001:67c:1400:20b0::1"; prefixLength = 64;
+  }];
+  networking.defaultGateway = {
+    address = "217.197.83.129";
+    interface = "ens2";
+  };
+  networking.defaultGateway6 = {
+    address = "fe80::1";
+    interface = "ens2";
+  };
+  boot.kernelParams = [ "console=tty0" "console=ttyS0,115200n8" ];
+  boot.loader.grub.extraConfig = "
+    serial --speed=115200 --unit=0 --word=8 --parity=no --stop=1
+    terminal_input serial
+    terminal_output serial
+  ";
 
   services.nginx.enable = lib.mkForce false;
   security.acme.certs = lib.mkForce {};

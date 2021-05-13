@@ -2,6 +2,7 @@
 
 {
   users.users.nginx.extraGroups = [ "acme" ];
+  users.users.nginx.isSystemUser = true;
   services.nginx = {
     enable = true;
     statusPage = true;
