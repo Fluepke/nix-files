@@ -29,8 +29,16 @@
   networking.firewall.checkReversePath = false;
 
   networking.firewall.allowedTCPPorts = [ 179 ];
-  services.bird2.enable = true;
-  services.bird2.config = lib.fileContents ./bird.conf;
+
+  # services.bird2.enable = true;
+  # services.bird2.config = lib.fileContents ./bird.conf;
+  fluepke.network = {
+    enable = true;
+    #primaryIp = "2a0f:5381:1::1";
+    #primaryIp4 = "45.158.";
+    locationPrefix = "2a0f:5381:1::/48";
+    locationTunnelPrefix = "2a0f:5382:1::/48";
+  };
  
   boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = true;
   boot.kernel.sysctl."net.ipv4.conf.all.forwarding" = true;

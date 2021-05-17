@@ -1,0 +1,56 @@
+ANYCAST = announce everywhere with same specificity
+INFRA   = announce more-specific location with anycast fallback
+TUNNEL  = announce only location-specific
+
+# 2a0f:5380::/32 ANYCAST
+2a0f:5380:1::/48 ANYCAST-SERVICES
+2a0f:5380:53::/48 ANYCAST-DNS
+
+# 2a0f:5381::/32 INFRA
+2a0f:5381:acab::/48 INFRA-INBERLIN
+2a0f:5381:1312::/48 INFRA-MYLOC
+2a0f:5381:cafe::/48 INFRA-HOME # announce less-specific at in-berlin
+
+# 2a0f:5382::/32 TUNNEL
+2a0f:5382:acab::/48 TUNNEL-inberlin
+2a0f:5382:1312::/48 TUNNEL-myloc
+
+# 45.158.42.0/23 INFRA
+45.158.42.0/24 INFRA-HOME      # announce less-specific at in-berlin
+45.158.43.0/24 INFRA-SERVICES  # announce less-specific at myloc
+
+# 45.158.40.0/23 TUNNEL
+45.158.40.0/24 TUNNEL-INBERLIN
+45.158.41.0/24 TUNNEL-MYLOC
+
+
+RIPE DB:
+route6: 2a0f:5380:1::/48
+route6: 2a0f:5380:53::/48
+route6: 2a0f:5381::/32
+route6: 2a0f:5381:acab::/48
+route6: 2a0f:5381:1312::/48
+route6: 2a0f:5381:cafe::/48
+route6: 2a0f:5382:acab::/48
+route6: 2a0f:5382:1312::/48
+route: 45.158.40.0/24
+route: 45.158.41.0/24
+route: 45.158.42.0/24
+route: 45.158.43.0/24
+route: 45.158.42.0/23
+inet6num: 2a0f:5380:1::/48 # FLUEPKE-ANYCAST-SERVICES
+inet6num: 2a0f:5380:53::/48 # FLUEPKE-ANYCAST-DNS
+inet6num: 2a0f:5381:acab::/48 # FLUEPKE-INFRA-INBERLIN
+inet6num: 2a0f:5381:1312::/48 # FLUEPKE-INFRA-MYLOC
+inet6num: 2a0f:5381:cafe::/48 # FLUEPKE-INFRA-HOME
+inet6num: 2a0f:5382:acab::/48 # FLUEPKE-TUNNEL-INBERLIN
+inet6num: 2a0f:5382:1312::/48 # FLUEPKE-TUNNEL-MYLOC
+inetnum: 45.158.40.0/24 # FLUEPKE-TUNNEL-INBERLIN
+inetnum: 45.158.41.0/24 # FLUEPKE-TUNNEL-MYLOC
+inetnum: 45.158.42.0/24 # FLUEPKE-INFRA-HOME
+inetnum: 45.158.43.0/24 # FLUEPKE-INFRA-SERVICES
+
+ROAs:
+2a0f:5380::/29 max-prefixlength /48
+45.158.40.0/22 max-prefixlength /24
+
