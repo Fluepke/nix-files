@@ -12,9 +12,10 @@
       ../../configuration/common
     ];
 
-  fluepke.deploy.ssh.host = "fluepke.in-berlin.de";
+  #fluepke.deploy.ssh.host = "fluepke.in-berlin.de";
+  fluepke.deploy.ssh.host = "217.197.83.150";
   fluepke.deploy.ssh.port = 22;
-  fluepke.deploy.groups = [ "router" ];
+  fluepke.deploy.groups = [ "fluepke" ];
 
   networking.hostName = "fluepke";
   networking.domain = "in-berlin.de";
@@ -34,7 +35,6 @@
     terminal_input serial
     terminal_output serial
   ";
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

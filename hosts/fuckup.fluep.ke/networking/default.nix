@@ -23,23 +23,28 @@
     };
   };
 
-  boot.kernel.sysctl."net.ipv6.conf.enp1s0.accept_ra" = false;
-  boot.kernel.sysctl."net.ipv6.conf.enp8s0.accept_ra" = false;
-
+  systemd.network.networks = {
+    "40-enp1s0".networkConfig.IPv6AcceptRA = false;
+    "40-enp8s0".networkConfig.IPv6AcceptRA = false;
+  };
+  
   networking.firewall.checkReversePath = false;
 
   networking.firewall.allowedTCPPorts = [ 179 ];
 
-  # services.bird2.enable = true;
-  # services.bird2.config = lib.fileContents ./bird.conf;
-  fluepke.network = {
+  services.bird2.enable = true;
+  services.bird2.config = lib.fileContents ./bird.conf;
+  petabyte.network = {
     enable = true;
-    #primaryIp = "2a0f:5381:1::1";
-    #primaryIp4 = "45.158.";
-    locationPrefix = "2a0f:5381:1::/48";
-    locationTunnelPrefix = "2a0f:5382:1::/48";
+    magicNumber = 1;
+    primaryIP = "2a0f:5381:1312::1";
+    primaryIP4 = "45.158.43.1";
+    wireguard = {
+      PublicKey = "GXcEdPIC/0YmW/RBGRN3FYGJyXMJN+64OhGgJNw2WFo=";
+      Endpoint = "2a0f:5382:1312::1";
+      hasLocationTunnelPrefix = true;
+      Endpoint4 = "45.158.41.1";
+      hasLocationTunnelPrefix4 = true;
+    };
   };
- 
-  boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = true;
-  boot.kernel.sysctl."net.ipv4.conf.all.forwarding" = true;
 }

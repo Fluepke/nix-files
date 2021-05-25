@@ -17,7 +17,14 @@ rec {
     map (
       hostName: nameValuePair hostName (
         import (pkgs.path + "/nixos") {
-          configuration = import (hostsDir + "/${hostName}/configuration.nix");
+          configuration = { ... }: {
+            _module.args = {
+              inherit hosts groups;
+            };
+            imports = [
+              (hostsDir + "/${hostName}/configuration.nix")
+            ];
+          };
         }
       )
     ) hostNames

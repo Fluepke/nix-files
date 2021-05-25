@@ -14,7 +14,7 @@
 
   fluepke.deploy.ssh.host = "195.39.247.162";
   fluepke.deploy.ssh.port = 22;
-  fluepke.deploy.groups = [ "router" ];
+  fluepke.deploy.groups = [ "fuckup" ];
 
   networking.hostName = "fuckup";
   networking.domain = "fluep.ke";
