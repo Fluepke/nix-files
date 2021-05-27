@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 
 {
   networking.useDHCP = false;
@@ -22,23 +22,26 @@
     address = "2a0f:5382:acab::1"; prefixLength = 128;
   }];
 
-  services.bird2.enable = true;
-  services.bird2.config = lib.fileContents ./bird.conf;
+  fluepke.secrets.inberlin-password-conf.owner = "bird2";
+
   petabyte.network = {
     enable = true;
+    localAS = 208135;
     magicNumber = 2;
     primaryIP = "2a0f:5381:acab::1";
     primaryIP4 = "45.158.43.2";
+    extraConfig = lib.fileContents ./bird-extra.conf;
+    peers = import ./peers.nix { inherit config; };
     wireguard = {
       PublicKey = "d4dwU5KFMgcesGT/UN6TWpYJk/MhKYQwGis5Gw67qTU=";
-      Endpoint = "2001:67c:1400:20b0::1";
-      hasLocationTunnelPrefix = false;
-      Endpoint4 = "217.197.83.150";
-      hasLocationTunnelPrefix4 = false;
-      #Endpoint = "2a0f:5382:acab::1";
-      #hasLocationTunnelPrefix = true;
-      #Endpoint4 = "45.158.40.1";
-      #hasLocationTunnelPrefix4 = true;
+      #Endpoint = "2001:67c:1400:20b0::1";
+      #hasLocationTunnelPrefix = false;
+      #Endpoint4 = "217.197.83.150";
+      #hasLocationTunnelPrefix4 = false;
+      Endpoint = "2a0f:5382:acab::1";
+      hasLocationTunnelPrefix = true;
+      Endpoint4 = "45.158.40.1";
+      hasLocationTunnelPrefix4 = true;
     };
   };
   #petabyte.network.

@@ -12,7 +12,6 @@
         address = "fd42:acab::20:8135:1"; prefixLength = 64;
       }];
     };
-    enp7s0.useDHCP = true; # br-pbb - mgmt access in case of disaster
     enp8s0 = { # br-fluepke
       ipv4.addresses = [{
         address = "45.158.41.1"; prefixLength = 24;
@@ -32,13 +31,14 @@
 
   networking.firewall.allowedTCPPorts = [ 179 ];
 
-  services.bird2.enable = true;
-  services.bird2.config = lib.fileContents ./bird.conf;
   petabyte.network = {
     enable = true;
+    localAS = 208135;
     magicNumber = 1;
     primaryIP = "2a0f:5381:1312::1";
     primaryIP4 = "45.158.43.1";
+    extraConfig = lib.fileContents ./bird-extra.conf;
+    peers = import ./peers.nix { inherit config; };
     wireguard = {
       PublicKey = "GXcEdPIC/0YmW/RBGRN3FYGJyXMJN+64OhGgJNw2WFo=";
       Endpoint = "2a0f:5382:1312::1";

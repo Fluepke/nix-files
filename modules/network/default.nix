@@ -42,6 +42,10 @@ let
         type = types.bool;
         default = false;
       };
+      extraConfig = mkOption {
+        type = types.lines;
+        default = "";
+      };
     };
   };
 
@@ -57,7 +61,7 @@ let
     };
   };
 in {
-  imports = [ /*./bird*/ ./wireguard.nix /*./rpki.nix*/ ];
+  imports = [ ./bird ./wireguard.nix ./rpki.nix ];
 
   options = rec {
     petabyte.network = {
@@ -99,9 +103,11 @@ in {
       };
       importFilter = mkOption {
         type = types.lines;
+        default = "";
       };
       exportFilter = mkOption {
         type = types.lines;
+        default = "";
       };
       internal = mkOption {
         type = types.bool;
@@ -157,19 +163,20 @@ in {
   config = mkIf cfg.enable {
     fluepke.deploy.groups = [ "network" ];
 
-    #petabyte.nftables = let
-    #  mtuFix = ''
-    #    meta nfproto ipv6 tcp flags syn tcp option maxseg size 1365-65535 tcp option maxseg size set 1364
-    #    meta nfproto ipv4 tcp flags syn tcp option maxseg size 1385-65535 tcp option maxseg size set 1384
-    #  '';
-    #in {
-    #  forwardPolicy = "accept";
-    #  extraInput = mtuFix + ''
-    #    meta l4proto ospfigp accept
-    #  '';
-    #  extraForward = mtuFix;
-    #  extraOutput = mtuFix;
-    #};
+    petabyte.nftables = let
+      mtuFix = ''
+        meta nfproto ipv6 tcp flags syn tcp option maxseg size 1365-65535 tcp option maxseg size set 1364
+        meta nfproto ipv4 tcp flags syn tcp option maxseg size 1385-65535 tcp option maxseg size set 1384
+      '';
+    in {
+      enable = true;
+      forwardPolicy = "accept";
+      extraInput = mtuFix + ''
+        meta l4proto ospfigp accept
+      '';
+      extraForward = mtuFix;
+      extraOutput = mtuFix;
+    };
 
     networking.firewall.allowedTCPPorts = [ 179 ];
     networking.firewall.checkReversePath = false;

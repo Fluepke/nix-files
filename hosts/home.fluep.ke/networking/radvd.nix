@@ -8,7 +8,7 @@
         AdvSendAdvert on;
         MaxRtrAdvInterval 15;
         AdvLinkMTU 1400;
-        prefix 2a0f:5381:1:1::/64 {
+        prefix 2a0f:5381:cafe:1::/64 {
           AdvRouterAddr on;
         };
         RDNSS 2606:4700:4700::1111 2606:4700:4700::1001 {};
@@ -17,7 +17,7 @@
         AdvSendAdvert on;
         MaxRtrAdvInterval 15;
         AdvLinkMTU 1400;
-        prefix 2a0f:5381:1:2::/64 {
+        prefix 2a0f:5381:cafe:2::/64 {
           AdvRouterAddr on;
         };
         RDNSS 2606:4700:4700::1111 2606:4700:4700::1001 {};

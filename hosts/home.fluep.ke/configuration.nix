@@ -17,7 +17,9 @@
       ../../configuration/unifi
     ];
 
-  fluepke.deploy.ssh.host = "45.158.40.1";
+  petabyte.network.enable = true;
+
+  fluepke.deploy.ssh.host = "91.65.227.125";
   fluepke.deploy.ssh.port = 22;
   fluepke.deploy.groups = [ "home" ];
 
@@ -39,7 +41,7 @@
 
   fluepke.monitoring.prometheus-tc4400-exporter.enable = true;
 
-  hardware.fancontrol.enable = true;
+  #hardware.fancontrol.enable = true;
 
   networking.hostName = "home";
   networking.domain = "fluep.ke";

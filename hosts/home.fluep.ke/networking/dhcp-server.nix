@@ -22,77 +22,77 @@
       }
 
       # internet VLAN
-      subnet 45.158.40.0 netmask 255.255.255.128 {
-        range 45.158.40.16 45.158.40.127;
-        option routers 45.158.40.1;
+      subnet 45.158.42.0 netmask 255.255.255.128 {
+        range 45.158.42.16 45.158.42.127;
+        option routers 45.158.42.1;
         option domain-name "wifi.fluep.ke";
         option domain-search "wifi.fluep.ke";
-        option broadcast-address 45.158.40.128;
+        option broadcast-address 45.158.42.128;
 
         host fritzbox {
           hardware ethernet 44:4e:6d:07:a3:dc;
-          fixed-address 45.158.40.2;
+          fixed-address 45.158.42.2;
           option host-name "fritzbox";
         }
         host tradfri {
           hardware ethernet dc:ef:ca:ba:89:7d;
-          fixed-address 45.158.40.3;
+          fixed-address 45.158.42.3;
           option host-name "tradfri";
         }
         host nuki {
           hardware ethernet 24:62:ab:d0:e2:00;
-          fixed-address 45.158.40.4;
+          fixed-address 45.158.42.4;
           option host-name "nuki";
         }
         host sonos-bathroom {
           hardware ethernet 34:7e:5c:f8:3f:54;
-          fixed-address 45.158.40.7;
+          fixed-address 45.158.42.7;
           option host-name "sonos-bathroom";
         }
         host sonos-bedroom-left {
           hardware ethernet 34:7e:5c:ff:5b:28;
-          fixed-address 45.158.40.5;
+          fixed-address 45.158.42.5;
           option host-name "sonos-bedroom-left";
         }
         host sonos-bedroom-right {
           hardware ethernet 34:7e:5c:ff:5d:2c;
-          fixed-address 45.158.40.6;
+          fixed-address 45.158.42.6;
           option host-name "sonos-bedroom-right";
         }
         host apple-tv-bedroom {
           hardware ethernet 6c:4a:85:42:9d:d3;
-          fixed-address 45.158.40.8;
+          fixed-address 45.158.42.8;
           option host-name "apple-tv-bedroom.wifi.fluep.ke";
         }
         host lenovo {
           hardware ethernet 18:56:80:60:90:91;
-          fixed-address 45.158.40.12;
+          fixed-address 45.158.42.12;
           option host-name "lenovo.wifi.fluep.ke";
         }
         host homepod {
           hardware ethernet e0:2b:96:af:3d:30;
-          fixed-address 45.158.40.9;
+          fixed-address 45.158.42.9;
           option host-name "homepod";
         }
         host air-humidifier {
           hardware ethernet e4:23:54:17:9c:79;
-          fixed-address 45.158.40.25;
+          fixed-address 45.158.42.25;
           option host-name "air-humidifier";
         }
         host air-cleaner {
           hardware ethernet e4:23:54:10:d7:ab;
-          fixed-address 45.158.40.23;
+          fixed-address 45.158.42.23;
           option host-name "air-cleaner";
         }
       }
 
       # guests VLAN
-      subnet 45.158.40.128 netmask 255.255.255.128 {
+      subnet 45.158.42.128 netmask 255.255.255.128 {
         option domain-name "guests.wifi.fluep.ke";
         option domain-search "guests.wifi.fluep.ke";
 
-        range 45.158.40.130 45.158.40.254;
-        option routers 45.158.40.129;
+        range 45.158.42.130 45.158.42.254;
+        option routers 45.158.42.129;
       }
     '';
   };

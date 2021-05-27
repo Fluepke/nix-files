@@ -17,6 +17,8 @@
   fluepke.deploy.ssh.port = 22;
   fluepke.deploy.groups = [ "fluepke" ];
 
+  users.users.fluepke.hashedPassword = "$6$BuaLj76Tb0fm6.$ClZfAeJSnhUxliYChnok9YJ6AbvCnscW1BN.8FsWNWwvJBi9qEmkQYOcyN9OCi85IOeKaXBSq7WjEPEUE9D8M1";
+
   networking.hostName = "fluepke";
   networking.domain = "in-berlin.de";
 

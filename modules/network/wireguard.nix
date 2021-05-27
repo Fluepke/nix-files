@@ -106,7 +106,7 @@ in {
     environment.systemPackages = with pkgs; [ wireguard-tools ];
 
     networking.firewall.allowedUDPPorts = map (x: x.port) ifaces;
-    #petabyte.network.ospf.interfaces = listToAttrs (map (x: x.ospfIface) (filter (x: x ? ospfIface) ifaces));
+    petabyte.network.ospf.interfaces = listToAttrs (map (x: x.ospfIface) (filter (x: x ? ospfIface) ifaces));
     systemd.network.netdevs = listToAttrs (map (x: x.netdev) ifaces);
     systemd.network.networks = listToAttrs (map (x: x.network) ifaces);
   };

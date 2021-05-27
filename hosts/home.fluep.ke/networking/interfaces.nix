@@ -16,22 +16,22 @@
 
   networking.interfaces.internet = {
     ipv6.addresses = [{
-      address = "2a0f:5381:1:1::1";
+      address = "2a0f:5381:cafe:1::1";
       prefixLength = 64;
     }];
     ipv4.addresses = [{
-      address = "45.158.40.1";
+      address = "45.158.42.1";
       prefixLength = 25;
     }];
   };
 
   networking.interfaces.guests = {
     ipv6.addresses = [{
-      address = "2a0f:5381:1:2::1";
+      address = "2a0f:5381:cafe:2::1";
       prefixLength = 64;
     }];
     ipv4.addresses = [{
-      address = "45.158.40.129";
+      address = "45.158.42.129";
       prefixLength = 25;
     }];
   };

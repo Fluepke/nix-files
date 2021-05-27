@@ -6,5 +6,6 @@
     ./secrets
     ./monitoring
     ./network
+    ./nftables
   ];
 }
