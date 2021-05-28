@@ -114,11 +114,11 @@ let
           reject;
         }
     '' + ''
-        if (roa_check(t_roa4, net, bgp_path.last) = ROA_INVALID) then {
+        if (roa_check(t_roa4, net, bgp_path.last_nonaggregated) = ROA_INVALID) then {
           print "[${name} in] roa4 invalid: ", net, " AS_PATH ", bgp_path;
           reject;
         }
-        if (roa_check(t_roa6, net, bgp_path.last) = ROA_INVALID) then {
+        if (roa_check(t_roa6, net, bgp_path.last_nonaggregated) = ROA_INVALID) then {
           print "[${name} in] roa6 invalid: ", net, " AS_PATH ", bgp_path;
           reject;
         }
