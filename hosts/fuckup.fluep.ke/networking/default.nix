@@ -22,6 +22,14 @@
     };
   };
 
+  # tunnel ips
+  #networking.interfaces.lo.ipv4.addresses = [{
+  #  address = "45.158.41.1"; prefixLength = 32;
+  #}];
+  networking.interfaces.lo.ipv6.addresses = [{
+    address = "2a0f:5382:1312::1"; prefixLength = 128;
+  }];
+
   systemd.network.networks = {
     "40-enp1s0".networkConfig.IPv6AcceptRA = false;
     "40-enp8s0".networkConfig.IPv6AcceptRA = false;

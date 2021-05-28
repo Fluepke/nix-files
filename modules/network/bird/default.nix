@@ -13,11 +13,13 @@ let
         import filter {
           bgp_local_pref = 50;
           ${host.config.petabyte.network.importFilter}
+          accept;
         };
         export filter {
           if ((0, 0, 0)) ~ bgp_large_community then reject;
           if ((${toString cfg.localAS}, ${toString cfg.localAS}, 0)) ~ bgp_large_community then reject;
           ${host.config.petabyte.network.exportFilter}
+          accept;
         };
       };
       ipv4 {
@@ -26,11 +28,13 @@ let
         import filter {
           bgp_local_pref = 50;
           ${host.config.petabyte.network.importFilter}
+          accept;
         };
         export filter {
           if ((0, 0, 0)) ~ bgp_large_community then reject;
           if ((${toString cfg.localAS}, ${toString cfg.localAS}, 0)) ~ bgp_large_community then reject;
           ${host.config.petabyte.network.exportFilter}
+          accept;
         };
       };
       source address ${cfg.primaryIP};

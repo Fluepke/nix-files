@@ -19,7 +19,7 @@
 
   petabyte.network.enable = true;
 
-  fluepke.deploy.ssh.host = "91.65.227.125";
+  fluepke.deploy.ssh.host = "45.158.42.1";
   fluepke.deploy.ssh.port = 22;
   fluepke.deploy.groups = [ "home" ];
 

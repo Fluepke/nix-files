@@ -14,10 +14,10 @@ let
       hostCfg = host.config.petabyte.network;
 
       # cfg.locationTunnelPrefix neighbour.locationTunnelPrefix
-      # 0                        0                              lookup main
-      # 0                        1                              lookup 2
-      # 1                        0                              loopup main
-      # 1                        1                              lookup 2
+      # 0                        0                              lookup main; unreachable
+      # 0                        1                              lookup 2; unreachable
+      # 1                        0                              loopup main; unreachable
+      # 1                        1                              lookup 2; unreachable
       hasTunnelPrefix = (
         if ipv4 then
           hostCfg.wireguard.hasLocationTunnelPrefix4

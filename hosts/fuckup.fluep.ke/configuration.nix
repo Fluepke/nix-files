@@ -12,7 +12,7 @@
       ../../configuration/common
     ];
 
-  fluepke.deploy.ssh.host = "195.39.247.162";
+  fluepke.deploy.ssh.host = "45.158.41.1";
   fluepke.deploy.ssh.port = 22;
   fluepke.deploy.groups = [ "fuckup" ];
 
